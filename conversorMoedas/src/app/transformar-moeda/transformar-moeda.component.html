@@ -1,0 +1,25 @@
+<h1>Conversor de Moeda</h1>
+<main class="conteudoMain">
+<div class="moedaBruta">
+    
+    <select #moedaBruta name="" id="" >
+        <option value=""></option>
+        <option value="BRL">Real Brasileiro</option>
+        <option value="USD">Dólar Norte Americano</option>
+        <option value="EUR">Euro</option>
+    </select>
+    <input #valor type="text" name="" id="" value="{{valor.value}}" (keyup)="teste(valor.value)">
+</div>
+
+<div class="moedaTransformada">
+    
+    <select #moedaTransformada name="" id="">
+        <option value=""></option>
+        <option value="BRL">Real Brasileiro</option>
+        <option value="USD">Dólar Norte Americano</option>
+        <option value="EUR">Euro</option>
+    </select>
+
+    <input type="text" name="" id="" value="{{valorConvertido}}">
+</div>
+</main>

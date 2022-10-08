@@ -1,0 +1,33 @@
+
+.moedaBruta{
+    width: 45%;
+    padding: 0.5%;
+    margin: 0 auto;
+    position: relative;
+    left: -22%;
+    top: 3.5em;
+
+}
+.moedaBruta > select{
+    width: 79%;
+    margin-bottom: 5px;
+}
+
+.moedaTransformada{
+    width: 45%;
+    padding: 0.5%;
+    margin: 0 auto;
+    position: relative;
+    right: -30%;
+}
+.moedaTransformada > select{
+    width: 79%;
+    margin-bottom: 5px;
+}
+.conteudoMain{
+    width: 43.3%;
+    margin: 0 auto;
+    border: 5px solid red;
+    position: absolute;
+}
+
