@@ -1,0 +1,20 @@
+<h1>Conversor de Moeda</h1>
+<main class="conteudoMain">
+<div class="moedaBruta">
+    
+    <select #moedaBruta name="" id="" (change)="moeda(moedaBruta.value)">
+        <option value=" "></option>
+        <option value="BRL">Real Brasileiro</option>
+        <option value="USD">Dólar Norte Americano</option>
+        <option value="EUR">Euro</option>
+    </select>
+    <div *ngIf="tipoMoeda != undefined; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <input #moeda type="text"  (keyup)="recebeMoeda(moeda.value)">
+    </ng-template>
+    <ng-template #elseBlock>
+        <input type="text" readonly >
+    </ng-template>
+</div>
+</main>
+

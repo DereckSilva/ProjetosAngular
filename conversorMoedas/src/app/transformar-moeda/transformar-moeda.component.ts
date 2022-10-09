@@ -1,22 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { MoedaService } from './../moeda.service';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-transformar-moeda',
   templateUrl: './transformar-moeda.component.html',
-  styleUrls: ['./transformar-moeda.component.css']
+  styleUrls: ['./transformar-moeda.component.css'],
+  providers: [MoedaService]
 })
 export class TransformarMoedaComponent implements OnInit {
 
-  constructor() { }
-
-  valorMoeda?: string
+  tipoMoeda?:string
   valorConvertido?: string
 
+  constructor() { }
+
   ngOnInit(): void {
-    
+
   }
-  teste(value:string){
-    let value35 = Number(value) * 5
-    return this.valorConvertido = value35.toString()
+
+  verificaTipoMoeda(value:string){
+    this.tipoMoeda = value
+    return this.tipoMoeda
   }
+
+  converterMoeda(valor:any){
+    return this.valorConvertido = valor.moedaBruta
+  }
+
 }

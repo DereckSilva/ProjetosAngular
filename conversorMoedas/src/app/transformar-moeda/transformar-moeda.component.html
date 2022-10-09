@@ -1,25 +1,17 @@
-<h1>Conversor de Moeda</h1>
-<main class="conteudoMain">
-<div class="moedaBruta">
-    
-    <select #moedaBruta name="" id="" >
-        <option value=""></option>
-        <option value="BRL">Real Brasileiro</option>
-        <option value="USD">Dólar Norte Americano</option>
-        <option value="EUR">Euro</option>
-    </select>
-    <input #valor type="text" name="" id="" value="{{valor.value}}" (keyup)="teste(valor.value)">
-</div>
-
+<app-moeda (moedaBruta)="converterMoeda($event)"></app-moeda>
 <div class="moedaTransformada">
     
-    <select #moedaTransformada name="" id="">
+    <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
         <option value=""></option>
         <option value="BRL">Real Brasileiro</option>
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-
-    <input type="text" name="" id="" value="{{valorConvertido}}">
+    <div *ngIf="tipoMoeda != undefined; else elseBlock">
+        <input type="text" value="{{ valorConvertido }}">
+    </div>
+    <ng-template #elseBlock>
+        <input type="text" value="" readonly>
+    </ng-template>
 </div>
-</main>
+
