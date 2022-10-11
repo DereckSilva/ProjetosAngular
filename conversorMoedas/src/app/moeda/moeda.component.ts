@@ -1,5 +1,5 @@
 import { MoedasService } from './../moedas.service';
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-moeda',
@@ -9,6 +9,11 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class MoedaComponent implements OnInit {
 
+  constructor(){
+    console.log(this.valor)
+  }
+
+  @Input('valorRecebido') valor: number = 10 
   
   @Output() moedaBruta = new EventEmitter()
 
@@ -26,6 +31,6 @@ export class MoedaComponent implements OnInit {
 
   moeda(value:string){
     this.tipoMoeda = value
-    return this.tipoMoeda
+    return this.moedaBruta.emit({moeda: value})
   }
 }

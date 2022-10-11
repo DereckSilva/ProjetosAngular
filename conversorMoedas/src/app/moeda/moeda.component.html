@@ -10,7 +10,7 @@
     </select>
     <div *ngIf="tipoMoeda != undefined; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-        <input #moeda type="text"  (keyup)="recebeMoeda(moeda.value)">
+        <input #moeda type="text" value="{{ valor }}" (keyup)="recebeMoeda(moeda.value)">
     </ng-template>
     <ng-template #elseBlock>
         <input type="text" readonly >

@@ -1,17 +1,16 @@
-<app-moeda (moedaBruta)="converterMoeda($event)"></app-moeda>
+<app-moeda [valorRecebido]="valor" (moedaBruta)="converterMoeda($event)"></app-moeda>
 <div class="moedaTransformada">
     
     <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
         <option value=""></option>
-        <option value="BRL">Real Brasileiro</option>
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-    <div *ngIf="tipoMoeda != undefined; else elseBlock">
-        <input type="text" value="{{ valorConvertido }}">
+    <div *ngIf="tipoMoeda != ''; else elseBlock">
+        <input #valorTeste type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valorTeste.value)">
     </div>
     <ng-template #elseBlock>
-        <input type="text" value="" readonly>
+        <input type="text" readonly>
     </ng-template>
 </div>
 

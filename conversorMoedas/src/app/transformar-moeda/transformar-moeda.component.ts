@@ -9,10 +9,12 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class TransformarMoedaComponent implements OnInit {
 
-  tipoMoeda?:string
+  tipoMoeda:string = ''
   valorConvertido?: string
+  valor: number = 0 
+  moeda:string =''
 
-  constructor() { }
+  constructor(private moedaService: MoedaService) { }
 
   ngOnInit(): void {
 
@@ -23,7 +25,14 @@ export class TransformarMoedaComponent implements OnInit {
     return this.tipoMoeda
   }
 
+  enviaMoeda(value:string){
+    //valor de um componente sendo enviado para outro
+    this.valor = this.moedaService.calcula(this.tipoMoeda) * Number(value)
+  }
+
+  //enviar moeda bruta
   converterMoeda(valor:any){
+    this.moeda = valor.moeda
     return this.valorConvertido = valor.moedaBruta
   }
 
