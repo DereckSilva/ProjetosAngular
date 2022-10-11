@@ -8,10 +8,9 @@
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-    <div *ngIf="tipoMoeda != undefined; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
+    <div *ngIf="tipoMoeda != undefined; else elseBlock">
         <input #moeda type="text" value="{{ valor }}" (keyup)="recebeMoeda(moeda.value)">
-    </ng-template>
+    </div>
     <ng-template #elseBlock>
         <input type="text" readonly >
     </ng-template>
