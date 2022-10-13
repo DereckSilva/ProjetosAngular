@@ -6,7 +6,7 @@
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-    <div *ngIf="tipoMoeda != ''; else elseBlock">
+    <div *ngIf="tipoMoedaTransformada != ''; else elseBlock">
         <input #valorTeste type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valorTeste.value)">
     </div>
     <ng-template #elseBlock>

@@ -1,11 +1,11 @@
-import { MoedasService } from './../moedas.service';
+import { RealService } from './../real.service';
 import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-moeda',
   templateUrl: './moeda.component.html',
   styleUrls: ['./moeda.component.css'],
-  providers:[MoedasService]
+  providers:[RealService]
 })
 export class MoedaComponent implements OnInit {
 
@@ -13,11 +13,12 @@ export class MoedaComponent implements OnInit {
     console.log(this.valor)
   }
 
-  @Input('valorRecebido') valor: number = 10 
+  @Input('valorRecebido') valor: number = 0 
   
   @Output() moedaBruta = new EventEmitter()
 
   tipoMoeda?:string
+  valorMoeda?:number
   valorConvertido?: string
 
   ngOnInit(): void {
@@ -26,11 +27,12 @@ export class MoedaComponent implements OnInit {
 
   recebeMoeda(value:string){
     let value35 = Number(value) * 5
-    return this.moedaBruta.emit({moedaBruta: value35})
+    this.valorMoeda = Number(value)
+    return this.moedaBruta.emit({coin: value35, moeda: this.tipoMoeda})
   }
 
   moeda(value:string){
     this.tipoMoeda = value
-    return this.moedaBruta.emit({moeda: value})
+    return this.moedaBruta.emit({moeda: value, coin:this.valorMoeda })
   }
 }
