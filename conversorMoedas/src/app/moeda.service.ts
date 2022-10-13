@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,16 @@ export class MoedaService {
   constructor() {
    }
 
-   getValorMoeda(tipoMoeda: string){
+   geraValor = new EventEmitter()
+
+   getValorMoedaConvertida(tipoMoeda: string){
     fetch(`https://economia.awesomeapi.com.br/json/${tipoMoeda}`)
     .then(resp => resp.json())
     .then(data => {this.coinValue = data[0].high})
     return this.coinValue
    }
 
-  calcula(tipoMoeda: string){
+  getValorMoedaBruta(tipoMoeda: string){
 
     fetch(`https://economia.awesomeapi.com.br/json/${tipoMoeda}`)
     .then(resp => resp.json())

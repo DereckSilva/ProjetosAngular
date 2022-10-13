@@ -1,3 +1,4 @@
+import { MoedaService } from './../moeda.service';
 import { FormsModule } from '@angular/forms';
 import { TransformarMoedaComponent } from './transformar-moeda.component';
 import { MoedaComponent } from './../moeda/moeda.component';
@@ -17,6 +18,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule
+  ],
+  providers:[
+    MoedaService
   ]
 })
 export class TransformarMoedaModule { }

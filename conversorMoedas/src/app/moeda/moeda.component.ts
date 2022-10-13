@@ -10,7 +10,6 @@ import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 export class MoedaComponent implements OnInit {
 
   constructor(){
-    console.log(this.valor)
   }
 
   @Input('valorRecebido') valor: number = 0 
