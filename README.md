@@ -5,7 +5,6 @@
 <h1 >O que é o projeto <img src="https://cdn-icons-png.flaticon.com/32/3850/3850203.png"></h1>
 </div>
 <div>
-
 <h4 align="center"> 
 	🚧  Em construção...  🚧
 </h4>
