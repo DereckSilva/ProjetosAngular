@@ -21,7 +21,7 @@
 
 ### Features
 
-- [] Conversor de Moedas
+- [ ] Conversor de Moedas
 
 ### Sobre
 
