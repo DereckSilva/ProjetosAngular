@@ -1,5 +1,5 @@
-<app-moeda [valorRecebido]="valor" (moedaBruta)="converterMoeda($event)"></app-moeda>
-<div class="moedaTransformada">
+<app-moeda [valorRecebido]="valor" ></app-moeda>
+<div class="moedaTransformada" >
     
     <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
         <option value=""></option>
@@ -7,7 +7,7 @@
         <option value="EUR">Euro</option>
     </select>
     <div *ngIf="tipoMoedaTransformada != ''; else elseBlock">
-        <input #valorTeste type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valorTeste.value)">
+        <input #valor type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valor.value)">
     </div>
     <ng-template #elseBlock>
         <input type="text" readonly>

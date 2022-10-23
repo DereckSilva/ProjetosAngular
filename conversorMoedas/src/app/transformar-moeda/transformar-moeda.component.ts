@@ -1,5 +1,6 @@
+import { RealService } from './../real.service';
 import { MoedaService } from './../moeda.service';
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-transformar-moeda',
@@ -9,14 +10,18 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 export class TransformarMoedaComponent implements OnInit {
 
   tipoMoedaTransformada:string = ''
-  valorConvertido?: string
-  valor: number = 0   
+  valorConvertido: number = 0
+  valor: number = 0
   moedaBruta:string = ''
 
-  constructor(private moedaService: MoedaService) { }
+  constructor(private real: RealService, private moeda: MoedaService) { }
 
   ngOnInit(): void {
-
+    this.moeda.geraValor.subscribe(
+      valor => {
+      this.valorConvertido = this.moeda.getMoedaConvertida(valor.tipoMoeda, this.tipoMoedaTransformada) * valor.valorBruto
+    }
+      )
   }
 
   verificaTipoMoeda(value:string){
@@ -25,20 +30,7 @@ export class TransformarMoedaComponent implements OnInit {
   }
 
   enviaMoeda(value:string){
-    let valorMoeda = 0
-    let resultConversao 
-    //valor de um componente sendo enviado para outro
-
-    valorMoeda = this.moedaService.getValorMoedaConvertida(this.tipoMoedaTransformada) / this.moedaService.getValorMoedaBruta(this.moedaBruta)
-    resultConversao = Number(value)*valorMoeda
-    this.moedaService.geraValor.emit({valorConvertido: resultConversao})
-    return this.valor = Number(resultConversao.toFixed(3))
-  }
-
-  //enviar moeda bruta
-  converterMoeda(valor:any){
-    this.moedaBruta = valor.moeda
-    return this.valorConvertido = valor.coin
+    this.real.geraValor.emit({valorBruto: value, tipoMoeda: this.tipoMoedaTransformada})
   }
 
 }

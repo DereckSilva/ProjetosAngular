@@ -1,3 +1,4 @@
+import { RealService } from './../real.service';
 import { MoedaService } from './../moeda.service';
 import { FormsModule } from '@angular/forms';
 import { TransformarMoedaComponent } from './transformar-moeda.component';
@@ -20,7 +21,8 @@ import { CommonModule } from '@angular/common';
     FormsModule
   ],
   providers:[
-    MoedaService
+    MoedaService,
+    RealService
   ]
 })
 export class TransformarMoedaModule { }

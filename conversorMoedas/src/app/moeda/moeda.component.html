@@ -2,12 +2,12 @@
 <main class="conteudoMain">
 <div class="moedaBruta">
     
-    <select #moedaBruta name="" id="" (change)="moeda(moedaBruta.value)">
+    <select #moedaBruta (change)="moeda(moedaBruta.value)">
         <option value=" "></option>
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-    <div *ngIf="tipoMoeda != undefined; else elseBlock">
+    <div *ngIf="tipoMoeda != ''; else elseBlock">
         <input #moeda type="text" value="{{ valor }}" (keyup)="recebeMoeda(moeda.value)">
     </div>
     <ng-template #elseBlock>
