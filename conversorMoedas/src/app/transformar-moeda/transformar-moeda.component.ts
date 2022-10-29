@@ -13,19 +13,16 @@ export class TransformarMoedaComponent implements OnInit {
   valorConvertido: number = 0
   valor: number = 0
   moedaBruta:string = ''
-
+  
   constructor(private real: RealService, private moeda: MoedaService) { }
-
+  
   ngOnInit(): void {
     this.moeda.geraValor.subscribe(
       valor => {
-      this.moeda.getMoedaConvertida(valor.tipoMoeda)
-      this.moeda.getMoedaBruta(this.tipoMoedaTransformada)
-      this.moeda.valorBruto.subscribe(
-        bruto => { this.moeda.valorConv.subscribe(
-          conv => {this.valorConvertido = bruto.valorBruto/ conv.valorConv * valor.valorBruto}
-        )}
-      )
+        this.moeda.apiMoedas(valor.tipoMoeda, this.tipoMoedaTransformada)
+        this.moeda.valorBruto.subscribe(
+          result =>{this.valorConvertido = result.valorBruto / result.valorConv * valor.valorBruto
+          })
     })
   }
 

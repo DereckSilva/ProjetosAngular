@@ -5,23 +5,18 @@ import { Injectable,EventEmitter } from '@angular/core';
 })
 export class MoedaService {
 
-  constructor() {
-   }
+  constructor() { }
 
    geraValor = new EventEmitter()
    valorBruto = new EventEmitter()
-   valorConv = new EventEmitter()
-   
-   getMoedaConvertida(tipoMoedaBruta: string){
-    
-    fetch(`https://economia.awesomeapi.com.br/json/${tipoMoedaBruta}`)
-    .then(resp => resp.json())
-    .then(data => {this.valorBruto.emit({valorBruto: data[0].high})})
-   }
 
-   getMoedaBruta(tipoMoedaConvertida:string){
-    fetch(`https://economia.awesomeapi.com.br/json/${tipoMoedaConvertida}`)
-    .then(resp => resp.json())
-    .then(data => {this.valorConv.emit({valorConv: data[0].high})})
-   }
+  apiMoedas =  async(valorBruto:string, valorConv:string):Promise<void> =>{
+
+    const data = await fetch(`https://economia.awesomeapi.com.br/json/${valorBruto}`)
+    const json = await data.json()
+    const data2 = await fetch(`https://economia.awesomeapi.com.br/json/${valorConv}`)
+    const json2 = await data2.json()
+    return this.valorBruto.emit({valorBruto: json[0].high, valorConv:json2[0].high})
+
+  }
 }

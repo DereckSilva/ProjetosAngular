@@ -22,14 +22,11 @@ export class MoedaComponent implements OnInit {
   ngOnInit(): void {
     this.real.geraValor.subscribe(
       valor => {
-        this.real.getMoedaConvertida(valor.tipoMoeda)
-        this.real.getMoedaBruta(this.tipoMoeda)
+        this.real.apiMoedas(valor.tipoMoeda, this.tipoMoeda)
         this.real.valorBruto.subscribe(
-          bruto => { this.real.valorConv.subscribe(
-            conv => {this.valor = bruto.valorBruto/ conv.valorConv * valor.valorBruto}
-          )}
-        )
-      })
+          result =>{this.valor = result.valorBruto / result.valorConv * valor.valorBruto
+          })
+    })
     }
 
   recebeMoeda(value:string){
