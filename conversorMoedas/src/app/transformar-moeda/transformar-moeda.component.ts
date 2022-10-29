@@ -19,9 +19,14 @@ export class TransformarMoedaComponent implements OnInit {
   ngOnInit(): void {
     this.moeda.geraValor.subscribe(
       valor => {
-      this.valorConvertido = this.moeda.getMoedaConvertida(valor.tipoMoeda, this.tipoMoedaTransformada) * valor.valorBruto
-    }
+      this.moeda.getMoedaConvertida(valor.tipoMoeda)
+      this.moeda.getMoedaBruta(this.tipoMoedaTransformada)
+      this.moeda.valorBruto.subscribe(
+        bruto => { this.moeda.valorConv.subscribe(
+          conv => {this.valorConvertido = bruto.valorBruto/ conv.valorConv * valor.valorBruto}
+        )}
       )
+    })
   }
 
   verificaTipoMoeda(value:string){
