@@ -5,13 +5,15 @@ import { TransformarMoedaComponent } from './transformar-moeda.component';
 import { MoedaComponent } from './../moeda/moeda.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InfoConvComponent } from '../info-conv/info-conv.component';
 
 
 
 @NgModule({
   declarations: [
     TransformarMoedaComponent,
-    MoedaComponent
+    MoedaComponent,
+    InfoConvComponent
   ],
   exports:[
     TransformarMoedaComponent

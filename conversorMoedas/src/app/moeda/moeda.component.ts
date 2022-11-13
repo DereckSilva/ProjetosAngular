@@ -1,6 +1,7 @@
 import { RealService } from './../real.service';
 import { MoedaService } from './../moeda.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { moeda } from '../interface';
 
 @Component({
   selector: 'app-moeda',
@@ -18,13 +19,21 @@ export class MoedaComponent implements OnInit {
   valorMoeda:number = 0
   tipoMoedaBruta: string = ''
 
+  //vai ser removido
+  descrMoedaBruta?: string
+  descrMoedaConvert?: string
+  objecMoedB?: moeda
+  objecMoedC?: moeda
+
 
   ngOnInit(): void {
     this.real.geraValor.subscribe(
       valor => {
         this.real.apiMoedas(valor.tipoMoeda, this.tipoMoeda)
         this.real.valorBruto.subscribe(
-          result =>{this.valor = result.valorBruto / result.valorConv * valor.valorBruto
+          result =>{
+            this.valor = result.valorBruto / result.valorConv * valor.valorBruto
+            this.descricaoConvert(result.infoMoeda.moedaBruta, result.infoMoeda.moedaConv)
           })
     })
     }
@@ -35,5 +44,16 @@ export class MoedaComponent implements OnInit {
 
   moeda(value:string){
     this.tipoMoeda = value
+  }
+
+  descricaoConvert(pDescr: moeda , sDescr:moeda){
+    //definir descrição das moedas
+    let descrMoedasB = pDescr.conversao.split('/')
+    let descrMoedasC = sDescr.conversao.split('/')
+
+    this.descrMoedaBruta =  descrMoedasB[0]
+    this.descrMoedaConvert = descrMoedasC[0]
+    this.objecMoedB = pDescr
+    this.objecMoedC = sDescr
   }
 }
