@@ -1,4 +1,4 @@
-<app-moeda [valorRecebido]="valor" ></app-moeda>
+
 <div class="moedaTransformada" >
 
     <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
@@ -6,28 +6,26 @@
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
     </select>
-    <div *ngIf="tipoMoedaTransformada != ''; else elseBlock">
+    <div *ngIf="descrMoedaB != ''; else elseBlock">
         <input #valor type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valor.value)">
     </div>
     <ng-template #elseBlock>
         <input type="text" readonly>
     </ng-template>
   </div>
-  <app-info-conv [dereck]="valors"></app-info-conv>
-<div class="informacoesMoedas" *ngIf="descrMoedaBruta">
-  <!--informações moeda bruta-->
 
   <div>
-    <h4>Cotação {{ descrMoedaBruta   }}</h4>
-    <p>Maior Cotação: {{ objecMoedB?.maiorValor | currency : 'BRL' }}</p>
-    <p>Menor Cotação {{ objecMoedB?.menorValor | currency : 'BRL' }}</p>
-  </div>
+    <select #moedaConv (change)="alteraMoeda(moedaConv.value)">
+      <option value=""></option>
+      <option value="USD">Dólar Norte Americano</option>
+      <option value="EUR">Euro</option>
+    </select>
 
-  <!--informações moeda convertida-->
-  <div>
-    <h4>Cotação {{ descrMoedaConvert }}</h4>
-    <p>Maior Cotação: {{ objecMoedC?.maiorValor | currency : 'BRL' }}</p>
-    <p>Menor Cotação {{ objecMoedC?.menorValor | currency : 'BRL' }}</p>
+    <div *ngIf="descrMoedaC != ''; else elseBlock" >
+      <input #mdConv type="text" value="{{ valorBruto2 }}" (keyup)="enviaMoeda2(mdConv.value)">
+    </div>
+    <ng-template>
+      <input type="text" readonly>
+    </ng-template>
   </div>
-</div>
 

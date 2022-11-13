@@ -1,4 +1,3 @@
-import { RealService } from './../real.service';
 import { MoedaService } from './../moeda.service';
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { moeda } from '../interface';
@@ -10,55 +9,70 @@ import { moeda } from '../interface';
 })
 export class TransformarMoedaComponent implements OnInit {
 
-  tipoMoedaTransformada:string = ''
+
+  descrMoedaB:string = ''
+  descrMoedaC: string = ''
   valorConvertido: number = 0
+  valorBruto2: number = 0
   valor: number = 0
   moedaBruta:string = ''
-  descrMoedaBruta?: string
-  descrMoedaConvert?: string
-  objecMoedB?: moeda
-  objecMoedC?: moeda
+
 
   //declaração de event emitter com output
   //output é feito do componente filho para o componente pai
-  @Output() teste = new EventEmitter<string>()
+  @Output() infoMoedas = new EventEmitter()
 
-  valors?: moeda
-
-  constructor(private real: RealService, private moeda: MoedaService) { }
+  constructor(private moeda: MoedaService) { }
 
   ngOnInit(): void {
     this.moeda.geraValor.subscribe(
       valor => {
-        this.moeda.apiMoedas(valor.tipoMoeda, this.tipoMoedaTransformada)
-        this.moeda.valorBruto.subscribe(
-          result =>{
-            this.valorConvertido = result.valorBruto / result.valorConv * valor.valorBruto
-            this.descricaoConvert(result.infoMoeda.moedaBruta, result.infoMoeda.moedaConv)
-            this.valors = result.infoMoeda.moedaBruta
-          })
+        this.eventGeraValor(valor)
+    })
+
+    this.moeda.geraValorConv.subscribe(
+      valor => {
+        this.eventGeraValorConv(valor)
+      }
+    )
+  }
+
+  eventGeraValor(valor:{tipoMoeda: string}){
+    this.moeda.apiMoedas(valor.tipoMoeda, this.descrMoedaC)
+    this.moeda.valorBruto.subscribe(
+      result => {
+        this.valorBruto2 = 4525
+        this.infoMoedas.emit({
+          result
+        })
+      })
+  }
+  eventGeraValorConv(valor:{tipoMoeda: string}){
+    this.moeda.apiMoedas(valor.tipoMoeda, this.descrMoedaB)
+    this.moeda.valorBruto.subscribe(
+      result => {
+        this.valorConvertido = 4525
+        this.infoMoedas.emit({
+          result
         })
       }
-
-      verificaTipoMoeda(value:string){
-        this.teste.emit('deu certo')
-    this.tipoMoedaTransformada = value
-    return this.tipoMoedaTransformada
+    )
   }
 
-  enviaMoeda(value:string){
-    this.real.geraValor.emit({valorBruto: value, tipoMoeda: this.tipoMoedaTransformada})
+  verificaTipoMoeda(descrMoeda:string){
+    this.descrMoedaB = descrMoeda
   }
 
-  descricaoConvert(pDescr: moeda , sDescr:moeda){
-    //definir descrição das moedas
-    let descrMoedasB = pDescr.conversao.split('/')
-    let descrMoedasC = sDescr.conversao.split('/')
+  enviaMoeda(valueCoin:string){
+    this.moeda.geraValor.emit({tipoMoeda: this.descrMoedaB})
+  }
 
-    this.descrMoedaBruta =  descrMoedasB[0]
-    this.descrMoedaConvert = descrMoedasC[0]
-    this.objecMoedB = pDescr
-    this.objecMoedC = sDescr
+  alteraMoeda(descrMoeda:string){
+    this.descrMoedaC = descrMoeda
+  }
+
+  enviaMoeda2(valueCoin:string){
+    this.moeda.geraValorConv.emit({tipoMoeda: this.descrMoedaC})
   }
 
 }

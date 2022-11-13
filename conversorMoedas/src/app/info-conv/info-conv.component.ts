@@ -10,10 +10,13 @@ export class InfoConvComponent implements OnInit {
 
   constructor() { }
 
-  @Input('dereck') dereck?: moeda
-
   ngOnInit(): void {
-    console.log(this.dereck)
+
+  }
+
+  //parametrizar informações que vem do componente filho
+  infoMoedas(value:string){
+    console.log(value)
   }
 
 }

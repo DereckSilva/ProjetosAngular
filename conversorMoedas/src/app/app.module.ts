@@ -1,9 +1,10 @@
-import { TransformarMoedaModule } from './transformar-moeda/transformar-moeda.module';
+
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { InfoConvModule } from './info-conv/info-conv.module';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    TransformarMoedaModule
+    InfoConvModule
   ],
   providers: [],
   bootstrap: [AppComponent]
