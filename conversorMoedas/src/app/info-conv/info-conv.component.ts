@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { moeda } from '../interface';
+import { moeda, info } from '../interface';
 //tornar componente pai
 @Component({
   selector: 'app-info-conv',
@@ -8,6 +8,9 @@ import { moeda } from '../interface';
 })
 export class InfoConvComponent implements OnInit {
 
+  moedaBruta?: moeda;
+  moedaConv?: moeda;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -15,8 +18,9 @@ export class InfoConvComponent implements OnInit {
   }
 
   //parametrizar informações que vem do componente filho
-  infoMoedas(value:string){
-    console.log(value)
+  infoMoedas(value:info){
+    this.moedaBruta = value?.result?.infoMoeda?.moedaBruta
+    this.moedaConv = value?.result?.infoMoeda?.moedaConv
   }
 
 }

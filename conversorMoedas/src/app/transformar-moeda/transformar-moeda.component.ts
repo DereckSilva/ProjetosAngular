@@ -12,9 +12,10 @@ export class TransformarMoedaComponent implements OnInit {
 
   descrMoedaB:string = ''
   descrMoedaC: string = ''
-  valorConvertido: number = 0
-  valorBruto2: number = 0
-  valor: number = 0
+  valorConvertido: string = ''
+  valorBruto2: string = ''
+  valor: string = ''
+  valorConv: string = ''
   moedaBruta:string = ''
 
 
@@ -41,9 +42,10 @@ export class TransformarMoedaComponent implements OnInit {
     this.moeda.apiMoedas(valor.tipoMoeda, this.descrMoedaC)
     this.moeda.valorBruto.subscribe(
       result => {
-        this.valorBruto2 = 4525
+        let total = Number(this.valor) * result.infoMoeda.moedaConv.maiorValor / result.infoMoeda.moedaBruta.maiorValor
+        this.valorBruto2 = String(total) === '0' ? this.valor : String(total)
         this.infoMoedas.emit({
-          result
+          result: result
         })
       })
   }
@@ -51,12 +53,22 @@ export class TransformarMoedaComponent implements OnInit {
     this.moeda.apiMoedas(valor.tipoMoeda, this.descrMoedaB)
     this.moeda.valorBruto.subscribe(
       result => {
-        this.valorConvertido = 4525
+        let total = Number(this.valorConv) * result.infoMoeda.moedaConv.maiorValor / result.infoMoeda.moedaBruta.maiorValor
+        this.valorConvertido = String(total) === '0' ? this.valor : String(total)
         this.infoMoedas.emit({
-          result
+          result: result
         })
       }
     )
+  }
+
+  valorBruto(value:string){
+    this.valorConvertido = ''
+    this.valorConv = ''
+  }
+  valorConver(value:string){
+    this.valorBruto2 = ''
+    this.valor = ''
   }
 
   verificaTipoMoeda(descrMoeda:string){
@@ -64,6 +76,7 @@ export class TransformarMoedaComponent implements OnInit {
   }
 
   enviaMoeda(valueCoin:string){
+    this.valor = valueCoin
     this.moeda.geraValor.emit({tipoMoeda: this.descrMoedaB})
   }
 
@@ -72,6 +85,7 @@ export class TransformarMoedaComponent implements OnInit {
   }
 
   enviaMoeda2(valueCoin:string){
+    this.valorConv = valueCoin
     this.moeda.geraValorConv.emit({tipoMoeda: this.descrMoedaC})
   }
 

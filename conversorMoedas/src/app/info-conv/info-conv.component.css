@@ -1,0 +1,11 @@
+main{
+  text-align: center;
+}
+
+main > div {
+  text-align: left;
+  display: flex;
+  justify-content: space-around;
+  width:40.0rem;
+  margin: 0rem auto;
+}

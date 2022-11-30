@@ -1,31 +1,33 @@
+<main>
 
-<div class="moedaTransformada" >
+  <div class="moedaTransformada" >
 
-    <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
+      <select #moedaTransformada (change)="verificaTipoMoeda(moedaTransformada.value)">
+          <option value=""></option>
+          <option value="USD">Dólar Norte Americano</option>
+          <option value="EUR">Euro</option>
+      </select>
+      <div *ngIf="descrMoedaB != ''; else elseBlock">
+          <input #valor type="text" value="{{ valorConvertido }}" (focus)="valorBruto(valor.value)"  (keyup)="enviaMoeda(valor.value)">
+      </div>
+      <ng-template #elseBlock>
+          <input type="text" readonly>
+      </ng-template>
+  </div>
+
+    <div>
+      <select #moedaConv (change)="alteraMoeda(moedaConv.value)">
         <option value=""></option>
         <option value="USD">Dólar Norte Americano</option>
         <option value="EUR">Euro</option>
-    </select>
-    <div *ngIf="descrMoedaB != ''; else elseBlock">
-        <input #valor type="text" value="{{ valorConvertido }}"  (keyup)="enviaMoeda(valor.value)">
-    </div>
-    <ng-template #elseBlock>
+      </select>
+
+      <div *ngIf="descrMoedaC != ''; else elseBlock" >
+        <input #mdConv type="text" value="{{ valorBruto2 }}" (focus)="valorConver(mdConv.value)" (keyup)="enviaMoeda2(mdConv.value)">
+      </div>
+      <ng-template #elseBlock>
         <input type="text" readonly>
-    </ng-template>
-  </div>
-
-  <div>
-    <select #moedaConv (change)="alteraMoeda(moedaConv.value)">
-      <option value=""></option>
-      <option value="USD">Dólar Norte Americano</option>
-      <option value="EUR">Euro</option>
-    </select>
-
-    <div *ngIf="descrMoedaC != ''; else elseBlock" >
-      <input #mdConv type="text" value="{{ valorBruto2 }}" (keyup)="enviaMoeda2(mdConv.value)">
+      </ng-template>
     </div>
-    <ng-template>
-      <input type="text" readonly>
-    </ng-template>
-  </div>
+</main>
 

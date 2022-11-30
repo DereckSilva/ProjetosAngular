@@ -1,3 +1,30 @@
 <!--o meu output vem diretamente na tag do componente filho-->
 <app-transformar-moeda (infoMoedas)="infoMoedas($event)"></app-transformar-moeda>
-<p>informações sobre as moedas</p>
+
+<main>
+
+  <span *ngIf="moedaBruta?.conversao">
+
+    <h1>Informações de moedas</h1>
+  </span>
+  <div *ngIf="moedaBruta?.conversao != moedaConv?.conversao; else elseBlock">
+    <div>
+      <p>{{ moedaBruta?.conversao }}</p>
+      <p>{{ moedaBruta?.data }}</p>
+      <p>{{ moedaBruta?.maiorValor }}</p>
+      <p>{{ moedaBruta?.menorValor }}</p>
+    </div>
+    <div>
+      <p>{{ moedaConv?.conversao }}</p>
+      <p>{{ moedaConv?.data }}</p>
+      <p>{{ moedaConv?.maiorValor }}</p>
+      <p>{{ moedaConv?.menorValor }}</p>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+      <p>{{ moedaBruta?.conversao }}</p>
+      <p>{{ moedaBruta?.data }}</p>
+      <p>{{ moedaBruta?.maiorValor }}</p>
+      <p>{{ moedaBruta?.menorValor }}</p>
+  </ng-template>
+</main>

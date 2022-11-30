@@ -1,0 +1,21 @@
+
+main{
+  display: flex;
+  width: 75.0rem;
+  border:0.1rem solid red;
+  margin: 5.0rem auto 0rem;
+  justify-content: space-around;
+  padding: 1.5rem;
+}
+
+input{
+  display: block;
+  width: 22.0rem;
+}
+
+select{
+  width: 22.0rem;
+  margin-bottom: 1.5rem;
+}
+
+
