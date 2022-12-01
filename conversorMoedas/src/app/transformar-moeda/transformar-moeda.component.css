@@ -43,6 +43,9 @@ select{
   outline: none;
   border-radius: 0.8rem;
   background-color: rgba(26, 12, 148, 0.8);
+  background-image: url("https://cdn-icons-png.flaticon.com/16/2985/2985150.png");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
 }
 
 

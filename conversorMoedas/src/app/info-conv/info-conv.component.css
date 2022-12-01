@@ -11,11 +11,15 @@ main > div {
   text-align: left;
   display: flex;
   justify-content: space-between;
-  width:40.0rem;
   margin: 0rem auto;
-  width: 55.0rem;
+  width: 60.0rem;
 }
 
-div p {
-  color: rgb(158, 158, 158);
+div p span {
+  color: rgb(92, 92, 92);
+  font-weight: 900;
+}
+
+div > p:nth-child(1){
+  margin-top: 1.5rem;
 }
