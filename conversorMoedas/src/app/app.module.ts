@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { InfoConvModule } from './info-conv/info-conv.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { InfoConvModule } from './info-conv/info-conv.module';
   imports: [
     BrowserModule,
     FormsModule,
-    InfoConvModule
+    InfoConvModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

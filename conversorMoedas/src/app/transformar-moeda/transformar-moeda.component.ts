@@ -1,6 +1,6 @@
 import { MoedaService } from './../moeda.service';
-import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { moeda } from '../interface';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-transformar-moeda',
@@ -17,28 +17,35 @@ export class TransformarMoedaComponent implements OnInit {
   valor: string = ''
   valorConv: string = ''
   moedaBruta:string = ''
-
+  seta: string = ''
 
   //declaração de event emitter com output
   //output é feito do componente filho para o componente pai
   @Output() infoMoedas = new EventEmitter()
 
+  faArrowLeft = faArrowLeft
+  faArrowRight = faArrowRight
+
   constructor(private moeda: MoedaService) { }
 
   ngOnInit(): void {
+
+
     this.moeda.geraValor.subscribe(
       valor => {
         this.eventGeraValor(valor)
-    })
+        this.seta = '0'
+      })
 
     this.moeda.geraValorConv.subscribe(
       valor => {
         this.eventGeraValorConv(valor)
+        this.seta = '1'
       }
-    )
-  }
+      )
+    }
 
-  eventGeraValor(valor:{tipoMoeda: string}){
+    eventGeraValor(valor:{tipoMoeda: string}){
     this.moeda.apiMoedas(valor.tipoMoeda, this.descrMoedaC)
     this.moeda.valorBruto.subscribe(
       result => {
@@ -62,11 +69,11 @@ export class TransformarMoedaComponent implements OnInit {
     )
   }
 
-  valorBruto(value:string){
+  valorBruto(){
     this.valorConvertido = ''
     this.valorConv = ''
   }
-  valorConver(value:string){
+  valorConver(){
     this.valorBruto2 = ''
     this.valor = ''
   }

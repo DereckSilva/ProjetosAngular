@@ -1,3 +1,8 @@
+<header>
+
+<h1>Conversor de moeda</h1>
+</header>
+
 <main>
 
   <div class="moedaTransformada" >
@@ -8,13 +13,16 @@
           <option value="EUR">Euro</option>
       </select>
       <div *ngIf="descrMoedaB != ''; else elseBlock">
-          <input #valor type="text" value="{{ valorConvertido }}" (focus)="valorBruto(valor.value)"  (keyup)="enviaMoeda(valor.value)">
+          <input  #valor type="text" value="{{ valorConvertido }}" (focus)="valorBruto()"  (keyup)="enviaMoeda(valor.value)">
       </div>
       <ng-template #elseBlock>
-          <input type="text" readonly>
+          <input   type="text" readonly>
       </ng-template>
   </div>
-
+<div>
+  <div *ngIf="seta == '1'"> <fa-icon [icon]="faArrowLeft"></fa-icon> </div>
+  <div *ngIf="seta == '0'"> <fa-icon [icon]="faArrowRight"></fa-icon></div>
+</div>
     <div>
       <select #moedaConv (change)="alteraMoeda(moedaConv.value)">
         <option value=""></option>
@@ -23,7 +31,7 @@
       </select>
 
       <div *ngIf="descrMoedaC != ''; else elseBlock" >
-        <input #mdConv type="text" value="{{ valorBruto2 }}" (focus)="valorConver(mdConv.value)" (keyup)="enviaMoeda2(mdConv.value)">
+        <input #mdConv type="text" value="{{ valorBruto2 }}" (focus)="valorConver()" (keyup)="enviaMoeda2(mdConv.value)">
       </div>
       <ng-template #elseBlock>
         <input type="text" readonly>

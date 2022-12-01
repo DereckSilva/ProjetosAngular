@@ -1,11 +1,21 @@
 main{
   text-align: center;
+  width: 75.0rem;
+  margin: 0.2rem auto;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
 }
 
 main > div {
   text-align: left;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width:40.0rem;
   margin: 0rem auto;
+  width: 55.0rem;
+}
+
+div p {
+  color: rgb(158, 158, 158);
 }

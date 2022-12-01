@@ -2,10 +2,11 @@ export interface moeda {
   conversao: string,
   maiorValor: string,
   menorValor: string,
-  data: string
+  data: string,
+  hora?: string
 }
 
-export interface info{
+export interface infoM{
   result: {
     infoMoeda: {
       moedaBruta: {
